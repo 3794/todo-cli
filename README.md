@@ -8,35 +8,7 @@ A terminal UI for a plain `TODO.md` file — built so that you and Claude Code c
 
 ## Install
 
-### The `todo` command
-
-With Go 1.26 or later:
-
-```sh
-go install github.com/3794/todo-cli/cmd/todo@latest
-```
-
-This puts `todo` in `$(go env GOPATH)/bin` (usually `~/go/bin`); make sure that directory is on your `PATH`.
-
-### The Claude Code plugin (`/todo-init`)
-
-From your shell:
-
-```sh
-claude plugin marketplace add 3794/todo-cli
-claude plugin install todo@todo-cli
-```
-
-Or inside Claude Code:
-
-```text
-/plugin marketplace add 3794/todo-cli
-/plugin install todo@todo-cli
-```
-
-The skill is then available as `/todo:todo-init`.
-
-### From a clone
+You need Go 1.26 or later and `make`.
 
 ```sh
 git clone https://github.com/3794/todo-cli.git
@@ -44,7 +16,14 @@ cd todo-cli
 make install
 ```
 
-`make install` builds `todo` into `~/.local/bin/todo` (make sure `~/.local/bin` is on your `PATH`) and links the skill into `~/.claude/skills/todo-init`, where it runs as `/todo-init`. It refuses to replace anything else that is already at that path. Use either the plugin or the link, not both, or you'll see the skill twice.
+`make install` does two things:
+
+- builds `todo` into `~/.local/bin/todo` (make sure `~/.local/bin` is on your `PATH`), and
+- links the `/todo-init` skill into `~/.claude/skills/todo-init`, so Claude Code picks it up.
+
+If something else is already at `~/.claude/skills/todo-init`, it leaves it alone and stops with an error. Running `make install` again is safe.
+
+The skill is a link into this clone, so keep the folder. If you move it, delete `~/.claude/skills/todo-init` and run `make install` again.
 
 ## Usage
 
@@ -88,7 +67,7 @@ todo --help
 
 ## Using it with Claude Code
 
-Run `/todo:todo-init` (or `/todo-init` if you installed from a clone) once in a project. It runs a small script that
+Run `/todo-init` once in a project. It runs a small script that
 
 1. creates `TODO.md` with a `# TODO` title if it doesn't exist, and
 2. appends the section below to `CLAUDE.md` (creating the file if needed) unless it already has one. Existing content is kept byte for byte, and running it again changes nothing. It never touches git.

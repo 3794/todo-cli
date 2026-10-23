@@ -82,8 +82,8 @@ func parseArgs(args []string) (action, string, error) {
 	}
 }
 
-// version is the module version for `go install ...@version` builds and
-// "(devel)" for local builds.
+// version is the main module version recorded in the build (derived from
+// git when built inside a checkout), or "(devel)" when there is none.
 func version() string {
 	if bi, ok := debug.ReadBuildInfo(); ok && bi.Main.Version != "" {
 		return bi.Main.Version
