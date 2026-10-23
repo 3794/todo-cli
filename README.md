@@ -6,6 +6,24 @@ A terminal UI for a plain `TODO.md` file — built so that you and Claude Code c
 - Claude Code reads and edits the same file directly. The `/todo-init` skill adds a short workflow to your project's `CLAUDE.md` so Claude keeps `TODO.md` up to date while it works.
 - The TUI never overwrites what someone else wrote: every change touches only its own line and is applied to a fresh read of the file, and the screen refreshes when the file changes on disk.
 
+## What it looks like
+
+```text
+TODO.md
+  Auth
+› [ ] Handle token expiry #auth due:2026-10-24
+    [ ] Call the refresh API
+  [x] Login screen done:2026-10-22
+  Deploy
+  [ ] Set up CI cache
+  [ ] Write the release notes and post them in the team
+      channel once CI is green
+
+j/k move · a add · e edit · space done · d delete · q quit
+```
+
+That's this file, from [File format](#file-format) below, in a 62-column terminal with the cursor on the first item.
+
 ## Install
 
 You need Go 1.26 or later and `make`.
@@ -57,6 +75,7 @@ todo --help
 
 ## Deploy
 - [ ] Set up CI cache
+- [ ] Write the release notes and post them in the team channel once CI is green
 ```
 
 - A line starting with `## ` is a section heading.
