@@ -1,0 +1,12 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "description": "/todo-init turns on a TODO.md workflow for a project, shared with the todo terminal UI.",
+  "author": {
+    "name": "3794"
+  },
+  "homepage": "https://github.com/3794/todo-cli",
+  "repository": "https://github.com/3794/todo-cli",
+  "license": "MIT",
+  "keywords": ["todo", "todo.md", "tui", "workflow"]
+}

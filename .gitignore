@@ -1,0 +1,12 @@
+# Local working files (not part of the project)
+/TODO.md
+/CLAUDE.md
+/DESIGN.md
+
+# Build output
+/todo
+/dist/
+*.test
+*.out
+
+.DS_Store
